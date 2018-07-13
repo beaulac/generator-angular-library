@@ -1,3 +1,4 @@
+/// <reference path="custom-typings.d.ts" />
 import * as webpack from 'webpack';
 import * as path from 'path';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -58,9 +59,6 @@ export default (environment = 'development') => {
       new webpack.DefinePlugin({
         ENV: JSON.stringify(environment)
       }),
-      ifProduction(new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true
-      })),
       new webpack.ContextReplacementPlugin(
         /angular(\\|\/)core(\\|\/)esm5/,
         path.join(__dirname, 'src')
