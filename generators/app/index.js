@@ -4,7 +4,6 @@ const yosay = require('yosay');
 const _ = require('lodash');
 const caniuseYarn = require('@danielbayerlein/caniuse-yarn')();
 const shelljs = require('shelljs');
-const isEmpty = require('is-null-like');
 
 const npmMajor = shelljs.exec('npm -v', {silent: true}).match(/(^\d+)/)[0];
 
@@ -25,19 +24,19 @@ module.exports = class AngularLibraryGenerator extends Generator {
         message: 'What is the github project organisation or username?',
         validate: required,
         default: githubUsername,
-        when: isEmpty(this.initialConfig.githubUsername)
+        when: _.isNil(this.initialConfig.githubUsername)
       }, {
         type: 'input',
         name: 'githubRepoName',
         message: 'What is the github repository name?',
         default: this.appname.replace(/ /g, '-'),
-        when: isEmpty(this.initialConfig.githubRepoName)
+        when: _.isNil(this.initialConfig.githubRepoName)
       }, {
         type: 'input',
         name: 'npmModuleName',
         message: 'What is the npm module name?',
         default: this.appname.replace(/ /g, '-'),
-        when: isEmpty(this.initialConfig.npmModuleName)
+        when: _.isNil(this.initialConfig.npmModuleName)
       }, {
         type: 'confirm',
         name: 'allowNg2InModuleName',
@@ -64,30 +63,30 @@ module.exports = class AngularLibraryGenerator extends Generator {
             .replace(/^ngx-/, '');
           return _.upperFirst(_.camelCase(npmModuleName)) + 'Module';
         },
-        when: isEmpty(this.initialConfig.ngModuleName)
+        when: _.isNil(this.initialConfig.ngModuleName)
       }, {
         type: 'input',
         name: 'selectorPrefix',
         message: 'What should the component / directive selector prefix be',
         validate: required,
-        when: isEmpty(this.initialConfig.selectorPrefix)
+        when: _.isNil(this.initialConfig.selectorPrefix)
       }, {
         type: 'input',
         name: 'projectTitle',
         message: 'What is the human readable project title?',
         default: this.determineAppname(),
-        when: isEmpty(this.initialConfig.projectTitle)
+        when: _.isNil(this.initialConfig.projectTitle)
       }, {
         type: 'input',
         name: 'projectDescription',
         message: 'What is the project description?',
-        when: isEmpty(this.initialConfig.projectDescription)
+        when: _.isNil(this.initialConfig.projectDescription)
       }, {
         type: 'input',
         name: 'authorName',
         message: 'What is the author name?',
         default: this.user.git.name(),
-        when: isEmpty(this.initialConfig.authorName)
+        when: _.isNil(this.initialConfig.authorName)
       }, {
         type: 'list',
         name: 'packageManager',
@@ -100,7 +99,7 @@ module.exports = class AngularLibraryGenerator extends Generator {
           name: 'yarn',
           value: 'yarn'
         }].filter(packageManager => packageManager.value === 'npm' || caniuseYarn),
-        when: isEmpty(this.initialConfig.packageManager)
+        when: _.isNil(this.initialConfig.packageManager)
       }];
 
       return this.prompt(prompts);
