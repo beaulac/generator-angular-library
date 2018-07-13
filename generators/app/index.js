@@ -9,7 +9,6 @@ const isEmpty = require('is-null-like');
 const npmMajor = shelljs.exec('npm -v', {silent: true}).match(/(^\d+)/)[0];
 
 module.exports = class AngularLibraryGenerator extends Generator {
-
   initializing() {
     this.initialConfig = this.config.getAll();
   }
@@ -191,5 +190,4 @@ module.exports = class AngularLibraryGenerator extends Generator {
       this.log('You can edit them or delete the config file to re-run the generator');
     }
   }
-
 };
