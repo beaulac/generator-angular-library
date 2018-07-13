@@ -21,7 +21,7 @@
     "@danielbayerlein/caniuse-yarn": "^1.1.0",
     "chalk": "^2.1.0",
     "is-null-like": "^1.0.3",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.10",
     "shelljs": "^0.7.6",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
@@ -30,7 +30,7 @@
     "chai": "^4.1.1",
     "mocha": "^4.0.1",
     "nixt": "^0.5.0",
-    "xo": "^0.18.2",
+    "xo": "^0.21.1",
     "yo": "^1.8.5"
   },
   "repository": "git@github.com:mattlewis92/generator-angular-library.git",
